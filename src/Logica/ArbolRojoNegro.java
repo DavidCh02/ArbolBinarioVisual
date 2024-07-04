@@ -1,12 +1,11 @@
 package Logica;
 
 public class ArbolRojoNegro extends ArbolBinarioSimple {
-    private NodoRojoNegro raiz;
 
     @Override
     public void agregar(int valor) {
-        raiz = agregarRecursivo(raiz, valor);
-        raiz.esRojo = false;
+        raiz = agregarRecursivo((NodoRojoNegro) raiz, valor);
+        ((NodoRojoNegro) raiz).esRojo = false; // La raíz siempre es negra
     }
 
     private NodoRojoNegro agregarRecursivo(NodoRojoNegro nodo, int valor) {
@@ -18,8 +17,11 @@ public class ArbolRojoNegro extends ArbolBinarioSimple {
             nodo.izquierdo = agregarRecursivo((NodoRojoNegro) nodo.izquierdo, valor);
         } else if (valor > nodo.valor) {
             nodo.derecho = agregarRecursivo((NodoRojoNegro) nodo.derecho, valor);
+        } else {
+            return nodo; // Valor duplicado, no hacer nada
         }
 
+        // Ajustar el árbol después de la inserción para mantener las propiedades
         if (esRojo((NodoRojoNegro) nodo.derecho) && !esRojo((NodoRojoNegro) nodo.izquierdo)) {
             nodo = rotarIzquierda(nodo);
         }

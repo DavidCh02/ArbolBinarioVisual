@@ -3,11 +3,9 @@ package Interfaz;
 import Logica.ArbolBinarioSimple;
 import Logica.Nodo;
 
-import java.awt.*;
 import javax.swing.*;
-
-
-import java.util.List; // Importa java.util.List para utilizar listas genéricas
+import java.awt.*;
+import java.util.List;
 
 public class PanelRound extends JPanel {
     private ArbolBinarioSimple arbol;
@@ -17,10 +15,12 @@ public class PanelRound extends JPanel {
 
     public PanelRound() {
         indexPintado = 0;
+        recorridoSeleccionado = List.of(); // Inicializa con una lista vacía
         timer = new Timer(1000, e -> {
-            repaint();
-            indexPintado++;
-            if (indexPintado >= recorridoSeleccionado.size()) {
+            if (recorridoSeleccionado != null && indexPintado < recorridoSeleccionado.size()) {
+                repaint();
+                indexPintado++;
+            } else {
                 ((Timer) e.getSource()).stop();
             }
         });
@@ -28,7 +28,7 @@ public class PanelRound extends JPanel {
 
     public void setArbol(ArbolBinarioSimple arbol) {
         this.arbol = arbol;
-        this.recorridoSeleccionado = null;
+        this.recorridoSeleccionado = List.of(); // Reinicia con una lista vacía
         this.indexPintado = 0;
         repaint();
     }
@@ -36,13 +36,13 @@ public class PanelRound extends JPanel {
     public void pintarRecorrido(List<Integer> recorrido) {
         this.recorridoSeleccionado = recorrido;
         this.indexPintado = 0;
-        timer.start();
+        timer.restart();
     }
 
     public void despintarRecorrido() {
+        timer.stop();
         this.recorridoSeleccionado = null;
         this.indexPintado = 0;
-        timer.stop();
         repaint();
     }
 
@@ -61,7 +61,7 @@ public class PanelRound extends JPanel {
         if (recorridoSeleccionado != null && recorridoSeleccionado.contains(nodo.valor) && recorridoSeleccionado.indexOf(nodo.valor) <= indexPintado) {
             g.setColor(Color.RED); // Resaltar nodo del recorrido seleccionado
         } else {
-            g.setColor(Color.BLACK);
+            g.setColor(new Color(70, 130, 180)); // Azul acero
         }
 
         // Dibujar nodo
@@ -70,6 +70,7 @@ public class PanelRound extends JPanel {
         g.drawString(String.valueOf(nodo.valor), x - 7, y + 4);
 
         // Dibujar líneas hacia hijos
+        g.setColor(new Color(34, 139, 34)); // Verde bosque
         if (nodo.izquierdo != null) {
             g.drawLine(x, y, x - xOffset, y + 50);
             dibujarNodo(g, nodo.izquierdo, x - xOffset, y + 50, xOffset / 2);
