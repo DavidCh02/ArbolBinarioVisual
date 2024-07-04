@@ -42,14 +42,15 @@ Tener instalado como minimo **JDK 17** en Intellij IDE
 ## Capturas de Pantalla
 
 **Programa y su interfaz**
+
 ![Imagen de WhatsApp 2024-07-04 a las 00 59 23_510c54c6](https://github.com/DavidCh02/ArbolBinarioVisual/assets/166523123/98bd51b4-559a-4b77-bd12-a837cd5837f0)
 
 
 **Progrma funcionando** y daptandose a cada tipo de arbol que se seleccione
 
-###### Simple
+##### Simple
 ![Imagen de WhatsApp 2024-07-04 a las 01 00 21_be05fdeb](https://github.com/DavidCh02/ArbolBinarioVisual/assets/166523123/9c630023-b3e3-45f7-907c-ff7f138b6215)
-###### AVL
+##### AVL
 ![Imagen de WhatsApp 2024-07-04 a las 01 00 42_66f51170](https://github.com/DavidCh02/ArbolBinarioVisual/assets/166523123/93e3a19b-7821-447a-8510-33ef0ac31d87)
-###### Rojo-Negro
+##### Rojo-Negro
 ![Imagen de WhatsApp 2024-07-04 a las 01 01 04_3be26fa2](https://github.com/DavidCh02/ArbolBinarioVisual/assets/166523123/291a4faa-c632-4c52-a72a-d6b3e275d990)
